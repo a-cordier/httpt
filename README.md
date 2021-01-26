@@ -1,5 +1,17 @@
 # httpt
 
+## Example 
+
+```yaml
+version: '3.4'
+
+services:
+  httpt:
+    image: ghcr.io/a-cordier/httpt:latest
+    ports:
+      - 8888:8080
+```
+
 HTTPT is a simple test server used by the developer-portal team for integration
 testing and debugging purpose.
 
