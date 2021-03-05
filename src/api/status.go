@@ -1,9 +1,11 @@
-package main
+package api
 
 import (
 	"fmt"
 	"log"
 	"net/http"
+
+	"github.com/a-cordier/httpt/util"
 )
 
 type Status struct {
@@ -97,9 +99,9 @@ var statusList = []*Status{
 	newStatus(http.StatusNetworkAuthenticationRequired),
 }
 
-func registerStatusHandlers(server *http.ServeMux) {
+func RegisterStatusHandlers(server *http.ServeMux) {
 	for _, status := range statusList {
 		log.Printf("%s %s (%s %d: %s)", "Registering [*]", status.route(), "Returns HTTP status", status.code, status.text)
-		server.HandleFunc(status.route(), httpLogger(status.handler()))
+		server.HandleFunc(status.route(), util.HttpLogger(status.handler()))
 	}
 }

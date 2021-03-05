@@ -1,9 +1,11 @@
-package main
+package api
 
 import (
 	"encoding/json"
 	"log"
 	"net/http"
+
+	"github.com/a-cordier/httpt/util"
 )
 
 type JohnDoe struct {
@@ -44,12 +46,12 @@ func createJohnDoes(times int) []JohnDoe {
 }
 
 func johnDoeHandler(w http.ResponseWriter, r *http.Request) {
-	times := parseIntQuery(r.URL, "times", 1)
+	times := util.ParseIntQuery(r.URL, "times", 1)
 	does := createJohnDoes(times)
-	json.NewEncoder(withJson(w)).Encode(does)
+	json.NewEncoder(util.WithJson(w)).Encode(does)
 }
 
-func registerJohnDoesHandler(server *http.ServeMux) {
+func RegisterJohnDoesHandler(server *http.ServeMux) {
 	log.Printf("%s (%s)", "Registering [*] /john-doe?times={count}", "Returns 100 bytes of John Doe times {count}")
-	server.HandleFunc("/john-doe", httpLogger(johnDoeHandler))
+	server.HandleFunc("/john-doe", util.HttpLogger(johnDoeHandler))
 }
