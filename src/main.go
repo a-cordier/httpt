@@ -18,6 +18,7 @@ const banner = `
 
 https://github.com/a-cordier/httpt
 ghcr.io/a-cordier/httpt
+
 `
 
 func main() {
