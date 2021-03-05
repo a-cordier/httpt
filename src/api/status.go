@@ -102,6 +102,6 @@ var statusList = []*Status{
 func RegisterStatusHandlers(server *http.ServeMux) {
 	for _, status := range statusList {
 		log.Printf("%s %s (%s %d: %s)", "Registering [*]", status.route(), "Returns HTTP status", status.code, status.text)
-		server.HandleFunc(status.route(), util.HttpLogger(status.handler()))
+		server.HandleFunc(status.route(), util.LogTime(status.handler()))
 	}
 }

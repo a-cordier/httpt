@@ -16,5 +16,5 @@ func waitHandler(w http.ResponseWriter, r *http.Request) {
 
 func RegisterWaitHandler(server *http.ServeMux) {
 	log.Printf("%s (%s)", "Registering [*] /wait?seconds={count}", "Waits during {count} seconds, then returns 200 OK")
-	server.HandleFunc("/wait", util.HttpLogger(waitHandler))
+	server.HandleFunc("/wait", util.LogTime(waitHandler))
 }

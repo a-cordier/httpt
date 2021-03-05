@@ -53,5 +53,5 @@ func johnDoeHandler(w http.ResponseWriter, r *http.Request) {
 
 func RegisterJohnDoesHandler(server *http.ServeMux) {
 	log.Printf("%s (%s)", "Registering [*] /john-doe?times={count}", "Returns 100 bytes of John Doe times {count}")
-	server.HandleFunc("/john-doe", util.HttpLogger(johnDoeHandler))
+	server.HandleFunc("/john-doe", util.LogTime(johnDoeHandler))
 }

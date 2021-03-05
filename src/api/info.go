@@ -13,12 +13,20 @@ type Info struct {
 	HostName string `json:"hostName"`
 }
 
+var info = buildInfo()
+
+func buildInfo() *Info {
+	hostName, _ := os.Hostname()
+	return &Info{
+		hostName,
+	}
+}
+
 func infoHandler(w http.ResponseWriter, r *http.Request) {
-	name, _ := os.Hostname()
-	json.NewEncoder(util.WithJson(w)).Encode(&Info{name})
+	json.NewEncoder(util.WithJson(w)).Encode(info)
 }
 
 func RegisterInfoHandler(server *http.ServeMux) {
 	log.Printf("%s (%s)", "Registering [*] /info", "Get infos")
-	server.HandleFunc("/info", util.HttpLogger(infoHandler))
+	server.HandleFunc("/info", util.LogTime(infoHandler))
 }

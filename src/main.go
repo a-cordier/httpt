@@ -16,8 +16,8 @@ const banner = `
 !!:  !!!   !!:     !!:   !!:        !!:  
  :   : :    :       :     :          :  
 
-https://github.com/adeo/dockerfiles-collection/http-test-server  
-
+https://github.com/a-cordier/httpt
+ghcr.io/a-cordier/httpt
 `
 
 func main() {

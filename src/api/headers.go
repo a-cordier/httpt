@@ -14,5 +14,5 @@ func headeReflectHandler(w http.ResponseWriter, r *http.Request) {
 
 func RegisterHeadersHandler(server *http.ServeMux) {
 	log.Printf("%s (%s)", "Registering [*] /headers", "Prints request headers as JSON")
-	server.HandleFunc("/headers", util.HttpLogger(headeReflectHandler))
+	server.HandleFunc("/headers", util.LogTime(headeReflectHandler))
 }
