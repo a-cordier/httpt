@@ -31,6 +31,7 @@ func main() {
 	api.RegisterJohnDoesHandler(server)
 	api.RegisterWaitHandler(server)
 	api.RegisterInfoHandler(server)
+	api.RegisterProxyHandler(server)
 	log.Printf("%s %s\n\n", "Starting httpt on port", port)
 	log.Fatal(http.ListenAndServe(":"+port, server))
 }
