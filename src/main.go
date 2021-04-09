@@ -27,6 +27,7 @@ func main() {
 	port := util.GetEnvOrDefault("PORT", "8080")
 
 	api.RegisterStatusHandlers(server)
+	api.RegisterReflectHandler(server)
 	api.RegisterHeadersHandler(server)
 	api.RegisterJohnDoesHandler(server)
 	api.RegisterWaitHandler(server)
