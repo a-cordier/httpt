@@ -39,5 +39,5 @@ func reflectHandler(w http.ResponseWriter, r *http.Request) {
 
 func RegisterReflectHandler(server *http.ServeMux) {
 	log.Printf("%s (%s)", "Registering [*] /reflect", "Prints request as JSON")
-	server.HandleFunc("/api/reflect", util.LogTime(reflectHandler))
+	server.HandleFunc("/reflect", util.LogTime(reflectHandler))
 }
