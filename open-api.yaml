@@ -1,0 +1,171 @@
+openapi: 3.0.1
+info:
+  title: Test Server
+  description: 'A Simple HTTP Test Server'
+  termsOfService: https://developer.adeo.cloud
+  contact:
+    email: devportal-team@leroymerlin.fr
+  version: 1.0.0
+servers:
+- url: https://pocadeo.apigw-az-eu.webmethods.io/gateway/MicroGwTestServer/1
+tags:
+- name: introspection
+  description: Get informations about your request
+- name: payloads
+  description: Get payloads for processing
+- name: proxy
+  description: proxy request to a given endpoint
+paths:
+  /proxy:
+      get:
+        tags:
+        - proxy
+        summary: Proxy Request to a given endpoint
+        operationId: proxy-get
+        parameters:
+        - in: query
+          name: target
+          required: true
+          description: must be URL encoded
+          schema: 
+            type: string
+        responses:
+          200:
+            description: success
+      post:
+        tags:
+        - proxy
+        summary: Proxy Request to a given endpoint
+        operationId: proxy-post
+        parameters:
+        - in: query
+          name: target
+          required: true
+          description: must be URL encoded
+          schema: 
+            type: string
+        responses:
+          200:
+            description: success
+      put:
+        tags:
+        - proxy
+        summary: Proxy Request to a given endpoint
+        operationId: proxy-put
+        parameters:
+        - in: query
+          name: target
+          required: true
+          description: must be URL encoded
+          schema: 
+            type: string
+        responses:
+          200:
+            description: success
+      patch:
+        tags:
+        - proxy
+        summary: Proxy Request to a given endpoint
+        operationId: proxy-patch
+        parameters:
+        - in: query
+          name: target
+          required: true
+          description: must be URL encoded
+          schema: 
+            type: string
+        responses:
+          200:
+            description: success
+  /wait:
+      get:
+        tags:
+        - proxy
+        summary: Wait for a given timeout in seconds before sending response
+        operationId: wait
+        parameters:
+        - in: query
+          name: seconds
+          required: true
+          description: The number of seconds to wait
+          schema: 
+            type: number
+        responses:
+          200:
+            description: success
+  /headers:
+    get:
+      tags:
+      - introspection
+      summary: Get request headers
+      operationId: headers
+      responses:
+        200:
+          description: success
+  /reflect:
+    get:
+      tags:
+      - introspection
+      summary: Get informations about the whole request
+      operationId: reflect
+      responses:
+        200:
+          description: success
+  /john-doe:
+    get:
+      tags:
+      - payloads
+      summary: Get John Doe
+      operationId: john-doe
+      parameters:
+        - in: query
+          name: times
+          required: true
+          description: The number of John Doe to return (One John Doe weights 100 bytes)
+          schema: 
+            type: number
+      responses:
+        200:
+          description: success
+          content: 
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /status/{id}:
+    get:
+      tags:
+      - status
+      summary: Get status
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: 
+            type: number
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: OK
+   
+components:
+  schemas:
+    Headers:
+      type: object
+    User:
+      type: object
+      properties:
+        name:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+        padding:
+          type: string
+
