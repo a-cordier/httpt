@@ -15,7 +15,7 @@ type Status struct {
 
 func (status *Status) write(w http.ResponseWriter) {
 	w.WriteHeader(status.code)
-	fmt.Fprintf(w, status.text)
+	fmt.Fprintf(w, status.text + "\n")
 }
 
 func (status *Status) route() string {
